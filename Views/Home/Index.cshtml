@@ -2,7 +2,42 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<link rel="stylesheet" href="~/css/style.css" />
+
+<header>
+    <h1>Welcome to Recipe Sharing System</h1>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Recipes</a></li>
+            <li><a href="#">Add Recipe</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section>
+        <h2>Latest Recipes</h2>
+
+        <div class="recipe-card">
+            <h3>Spaghetti Carbonara</h3>
+            <p>A simple Italian pasta dish made with eggs, cheese, pancetta, and pepper.</p>
+        </div>
+
+        <div class="recipe-card">
+            <h3>Grilled Chicken Salad</h3>
+            <p>Fresh greens topped with juicy grilled chicken, cherry tomatoes, and a light vinaigrette.</p>
+        </div>
+
+        <div class="recipe-card">
+            <h3>Chocolate Chip Cookies</h3>
+            <p>Classic homemade cookies with gooey chocolate chips and a crispy edge.</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Recipe Sharing System. All rights reserved.</p>
+</footer>
