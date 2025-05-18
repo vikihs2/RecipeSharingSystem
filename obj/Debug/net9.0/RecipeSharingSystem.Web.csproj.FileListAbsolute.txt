@@ -19,7 +19,7 @@ C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\scopedcss\Views\
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\scopedcss\bundle\RecipeSharingSystem.Web.styles.css
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\scopedcss\projectbundle\RecipeSharingSystem.Web.bundle.scp.css
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\compressed\qgm0ki0xvt-b9sayid5wm.gz
-C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\compressed\4onrjeetk1-02e5y2wgms.gz
+C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\compressed\0v3ugyi8jw-j57z7stvc8.gz
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\compressed\yzsf1afx2l-61n19gt1b8.gz
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\compressed\ncr1zghtvj-xtxxf3hu2r.gz
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\compressed\axh6yj9kxs-t1cqhe9u97.gz
@@ -81,6 +81,7 @@ C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\compressed\lbw9h
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\compressed\vraozf4js6-9vr69e8ynj.gz
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\compressed\86rh0y1j7c-87fc7y1x7t.gz
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\compressed\o2igyr7ah6-mlv21k5csn.gz
+C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\compressed\4onrjeetk1-02e5y2wgms.gz
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\compressed\3i4ds91hx3-wywygwqzco.gz
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\compressed\i0wbbc34ip-wywygwqzco.gz
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\staticwebassets.build.json
