@@ -1,3 +1,11 @@
+C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.AssemblyInfoInputs.cache
+C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.AssemblyInfo.cs
+C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.csproj.CoreCompileInputs.cache
+C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.RazorAssemblyInfo.cache
+C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.RazorAssemblyInfo.cs
+C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.sourcelink.json
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\bin\Debug\net9.0\appsettings.json
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\bin\Debug\net9.0\RecipeSharingSystem.Web.staticwebassets.runtime.json
@@ -7,14 +15,6 @@ C:\Users\Hristo\Desktop\js\RecipeSharingSystem\bin\Debug\net9.0\RecipeSharingSys
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\bin\Debug\net9.0\RecipeSharingSystem.Web.runtimeconfig.json
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\bin\Debug\net9.0\RecipeSharingSystem.Web.dll
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\bin\Debug\net9.0\RecipeSharingSystem.Web.pdb
-C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.AssemblyInfoInputs.cache
-C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.AssemblyInfo.cs
-C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.csproj.CoreCompileInputs.cache
-C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.RazorAssemblyInfo.cache
-C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.RazorAssemblyInfo.cs
-C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\RecipeSharingSystem.Web.sourcelink.json
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\scopedcss\bundle\RecipeSharingSystem.Web.styles.css
 C:\Users\Hristo\Desktop\js\RecipeSharingSystem\obj\Debug\net9.0\scopedcss\projectbundle\RecipeSharingSystem.Web.bundle.scp.css
