@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\RecipeSharingSystem.Web.props" />
+</Project>

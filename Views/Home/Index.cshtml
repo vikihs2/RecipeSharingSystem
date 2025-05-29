@@ -2,24 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
-<link rel="stylesheet" href="~/css/style.css" />
+<link rel="stylesheet" href="~/css/site.css" />
 
 <header>
-    <h1>Welcome to Recipe Sharing System</h1>
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Recipes</a></li>
-            <li><a href="#">Add Recipe</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
-        </ul>
-    </nav>
+    <div class="welcome-box">
+        <h1>Welcome to Recipe Sharing System</h1>
+    </div>
 </header>
 
 <main>
     <section>
-        <h2>Latest Recipes</h2>
+        <h2 class="main-heading">Latest Recipes</h2>
 
         <div class="recipe-card">
             <h3>Spaghetti Carbonara</h3>
@@ -37,7 +30,3 @@
         </div>
     </section>
 </main>
-
-<footer>
-    <p>&copy; 2025 Recipe Sharing System. All rights reserved.</p>
-</footer>
