@@ -22,12 +22,23 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="@Url.Action("Privacy", "Home")">Privacy</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="@Url.Action("Login", "User")">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="@Url.Action("Register", "User")">Register</a>
-                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <form method="post" asp-controller="User" asp-action="Logout" style="display:inline;">
+                                <button type="submit" class="nav-link btn btn-link text-white" style="display:inline; padding:0; border:none; background:none;">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="@Url.Action("Login", "User")">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="@Url.Action("Register", "User")">Register</a>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
