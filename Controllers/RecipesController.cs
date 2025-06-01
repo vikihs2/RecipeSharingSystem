@@ -24,6 +24,7 @@ namespace RecipeSharingSystem.Controllers
             if (ModelState.IsValid)
             {
                 recipe.CreatedOn = DateTime.Now;
+                recipe.AuthorUsername = User.Identity?.Name;
                 _context.Recipes.Add(recipe);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");
