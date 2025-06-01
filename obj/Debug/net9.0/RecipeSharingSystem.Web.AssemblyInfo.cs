@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RecipeSharingSystem.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc379c0a25a22849f0763906718e4a116bf70499")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b049a036f47921b007d2687e9c165d5ce111f4c5")]
 [assembly: System.Reflection.AssemblyProductAttribute("RecipeSharingSystem.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RecipeSharingSystem.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

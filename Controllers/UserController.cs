@@ -6,9 +6,9 @@ namespace RecipeSharingSystem.Web.Controllers
 {
     public class UserController : Controller
     {
-        private static List<(string Email, string Password)> users = new List<(string, string)>
+        private static List<(string Username, string Email, string Password)> users = new List<(string, string, string)>
         {
-            ("test@example.com", "123456")
+            ("testuser", "test@example.com", "123456")
         };
 
         [HttpGet]
@@ -21,11 +21,13 @@ namespace RecipeSharingSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(string email, string password)
         {
-            if (users.Any(u => u.Email == email && u.Password == password))
+            var user = users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            if (user != default)
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, email),
+                    new Claim(ClaimTypes.Name, user.Username),
+                    new Claim(ClaimTypes.Email, user.Email)
                 };
 
                 var identity = new ClaimsIdentity(claims, "Cookies");
@@ -50,7 +52,7 @@ namespace RecipeSharingSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Register(string username, string email, string password)
         {
-            users.Add((email, password));
+            users.Add((username, email, password));
             TempData["Message"] = "Registration successful. Please log in.";
             return RedirectToAction("Login");
         }
