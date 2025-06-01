@@ -1,31 +1,36 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using RecipeSharingSystem.Web.Models;
+using RecipeSharingSystem.Data;
+using System.Linq;
 
-namespace RecipeSharingSystem.Web.Controllers;
-
-public class HomeController : Controller
+namespace RecipeSharingSystem.Web.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        private readonly ApplicationDbContext _context;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public HomeController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        public IActionResult Index()
+        {
+            var recipes = _context.Recipes
+                .OrderByDescending(r => r.CreatedOn)
+                .ToList();
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(recipes);
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View();
+        }
     }
 }
