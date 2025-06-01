@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<RecipeSharingSystem.Models.Recipe>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -14,19 +16,22 @@
     <section>
         <h2 class="main-heading">Latest Recipes</h2>
 
-        <div class="recipe-card">
-            <h3>Spaghetti Carbonara</h3>
-            <p>A simple Italian pasta dish made with eggs, cheese, pancetta, and pepper.</p>
-        </div>
-
-        <div class="recipe-card">
-            <h3>Grilled Chicken Salad</h3>
-            <p>Fresh greens topped with juicy grilled chicken, cherry tomatoes, and a light vinaigrette.</p>
-        </div>
-
-        <div class="recipe-card">
-            <h3>Chocolate Chip Cookies</h3>
-            <p>Classic homemade cookies with gooey chocolate chips and a crispy edge.</p>
-        </div>
+        @if (!Model.Any())
+        {
+            <p>No recipes have been added yet.</p>
+        }
+        else
+        {
+            @foreach (var recipe in Model)
+            {
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">@recipe.Title</h5>
+                        <p class="card-text">@recipe.Description</p>
+                        <p class="text-muted">Posted on @recipe.CreatedOn.ToShortDateString()</p>
+                    </div>
+                </div>
+            }
+        }
     </section>
 </main>
