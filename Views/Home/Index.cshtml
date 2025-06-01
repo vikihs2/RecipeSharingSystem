@@ -28,7 +28,9 @@
                     <div class="card-body">
                         <h5 class="card-title">@recipe.Title</h5>
                         <p class="card-text">@recipe.Description</p>
-                        <p class="text-muted">Posted on @recipe.CreatedOn.ToShortDateString()</p>
+                        <p class="text-muted">
+                            Posted by @recipe.AuthorUsername on @recipe.CreatedOn.ToShortDateString()
+                        </p>
                     </div>
                 </div>
             }
