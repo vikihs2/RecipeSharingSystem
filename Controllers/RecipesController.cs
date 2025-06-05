@@ -25,17 +25,21 @@ namespace RecipeSharingSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(Recipe recipe)
         {
+            if (!User.Identity.IsAuthenticated || string.IsNullOrEmpty(User.Identity.Name))
+            {
+                return RedirectToAction("Login", "User");
+            }
+
             if (ModelState.IsValid)
             {
                 recipe.CreatedOn = DateTime.Now;
-                recipe.AuthorUsername = User.Identity?.Name;
+                recipe.AuthorUsername = User.Identity.Name;
                 _context.Recipes.Add(recipe);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Add));
             }
 
-            var recipes = _context.Recipes.ToList();
-            ViewBag.Recipes = recipes;
+            ViewBag.Recipes = _context.Recipes.ToList();
             return View(recipe);
         }
 
