@@ -3,6 +3,12 @@
 }
 
 <h2>Register</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-danger">@TempData["Message"]</div>
+}
+
 <form method="post">
     <div class="form-group">
         <label>Username</label>
