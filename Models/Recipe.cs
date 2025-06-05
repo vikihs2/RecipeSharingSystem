@@ -14,5 +14,7 @@ namespace RecipeSharingSystem.Models
         public DateTime CreatedOn { get; set; } = DateTime.Now;
 
         public string? AuthorUsername { get; set; }
+
+        public string CreatedBy { get; set; }
     }
 }
