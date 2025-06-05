@@ -21,6 +21,12 @@ namespace RecipeSharingSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(string email, string password)
         {
+            if (password.Length < 6)
+            {
+                ModelState.AddModelError("", "Need at least 6 charocters!");
+                return View();
+            }
+
             var user = users.FirstOrDefault(u => u.Email == email && u.Password == password);
             if (user != default)
             {
@@ -52,6 +58,18 @@ namespace RecipeSharingSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Register(string username, string email, string password)
         {
+            if (password.Length < 6)
+            {
+                TempData["Message"] = "Need at least 6 charocters!";
+                return RedirectToAction("Register");
+            }
+
+            if (users.Any(u => u.Username == username))
+            {
+                TempData["Message"] = "This username already exists!";
+                return RedirectToAction("Register");
+            }
+
             users.Add((username, email, password));
             TempData["Message"] = "Registration successful. Please log in.";
             return RedirectToAction("Login");
