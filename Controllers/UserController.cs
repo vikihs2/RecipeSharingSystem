@@ -1,15 +1,18 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 
 namespace RecipeSharingSystem.Web.Controllers
 {
     public class UserController : Controller
     {
-        private static List<(string Username, string Email, string Password)> users = new List<(string, string, string)>
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+
+        public UserController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
-            ("testuser", "test@example.com", "123456")
-        };
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
 
         [HttpGet]
         public IActionResult Login()
@@ -21,29 +24,15 @@ namespace RecipeSharingSystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(string email, string password)
         {
-            if (password.Length < 6)
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user != null)
             {
-                ModelState.AddModelError("", "Need at least 6 charocters!");
-                return View();
-            }
-
-            var user = users.FirstOrDefault(u => u.Email == email && u.Password == password);
-            if (user != default)
-            {
-                var claims = new List<Claim>
+                var result = await _signInManager.PasswordSignInAsync(user.UserName, password, false, false);
+                if (result.Succeeded)
                 {
-                    new Claim(ClaimTypes.Name, user.Username),
-                    new Claim(ClaimTypes.Email, user.Email)
-                };
-
-                var identity = new ClaimsIdentity(claims, "Cookies");
-                var principal = new ClaimsPrincipal(identity);
-
-                await HttpContext.SignInAsync("Cookies", principal);
-
-                return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
+                }
             }
-
             ModelState.AddModelError("", "Invalid login attempt.");
             return View();
         }
@@ -55,31 +44,34 @@ namespace RecipeSharingSystem.Web.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Register(string username, string email, string password)
-        {
-            if (password.Length < 6)
-            {
-                TempData["Message"] = "Need at least 6 charocters!";
-                return RedirectToAction("Register");
-            }
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Register(string email, string password)
+{
+    if (password.Length < 6)
+    {
+        TempData["Message"] = "Need at least 6 characters!";
+        return RedirectToAction("Register");
+    }
 
-            if (users.Any(u => u.Username == username))
-            {
-                TempData["Message"] = "This username already exists!";
-                return RedirectToAction("Register");
-            }
-
-            users.Add((username, email, password));
-            TempData["Message"] = "Registration successful. Please log in.";
-            return RedirectToAction("Login");
-        }
+    var user = new IdentityUser { UserName = email, Email = email, EmailConfirmed = true };
+    var result = await _userManager.CreateAsync(user, password);
+    if (result.Succeeded)
+    {
+        TempData["Message"] = "Registration successful. Please log in.";
+        return RedirectToAction("Login");
+    }
+    foreach (var error in result.Errors)
+    {
+        ModelState.AddModelError("", error.Description);
+    }
+    return View();
+}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync("Cookies");
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
     }

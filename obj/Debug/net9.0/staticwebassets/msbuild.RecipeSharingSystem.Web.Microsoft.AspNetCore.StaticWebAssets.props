@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ld4tf31xrm</Fingerprint>
-      <Integrity>l5myk+COM6jdczozkouT3U/xTqS4pe25dP7rJ32hptM=</Integrity>
+      <Fingerprint>gjzecok3ue</Fingerprint>
+      <Integrity>bJe72bXM6qI/UIlbhNpXjfnRugo81zCcWxxrEn5egok=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</OriginalItemSpec>
@@ -1170,23 +1170,23 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\jquery\LICENSE.txt'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RecipeSharingSystem.Web.gckj8uoe0m.bundle.scp.css'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RecipeSharingSystem.Web.yn86ujim4z.bundle.scp.css'))">
       <SourceType>Package</SourceType>
       <SourceId>RecipeSharingSystem.Web</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/RecipeSharingSystem.Web</BasePath>
-      <RelativePath>RecipeSharingSystem.Web.gckj8uoe0m.bundle.scp.css</RelativePath>
+      <RelativePath>RecipeSharingSystem.Web.yn86ujim4z.bundle.scp.css</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>Reference</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName>ScopedCss</AssetTraitName>
       <AssetTraitValue>ProjectBundle</AssetTraitValue>
-      <Fingerprint>gckj8uoe0m</Fingerprint>
-      <Integrity>QNJ87WVuBCX9/vxvB6TQaxPPOtR0oTHdUq4EwVahRD8=</Integrity>
+      <Fingerprint>yn86ujim4z</Fingerprint>
+      <Integrity>ouQXFKqf9LKFlPGtKNc4nvHDpwI0WES2AW5hEtp2LBY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RecipeSharingSystem.Web.gckj8uoe0m.bundle.scp.css'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\RecipeSharingSystem.Web.yn86ujim4z.bundle.scp.css'))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

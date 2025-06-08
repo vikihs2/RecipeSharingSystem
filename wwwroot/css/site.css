@@ -9,7 +9,7 @@ html {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #3949ab;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #fca311;
 }
 
 html {
@@ -76,11 +76,11 @@ footer {
 }
 
 h1, h2, h3 {
-  color: #3949ab;
+  color: #fca311;
 }
 
 .recipe-card {
-  background: #283655;
+  background: #fca311;
   color: #fff;
   border-radius: 8px;
   padding: 1rem;
@@ -90,7 +90,7 @@ h1, h2, h3 {
 
 .welcome-box,
 .main-heading {
-  background: #283655;
+  background: #fca311;
   color: #fff;
   border-radius: 8px;
   padding: 1.5rem;
@@ -188,3 +188,14 @@ h1, h2, h3 {
     background: #fca311;
     color: #fff !important;
 }
+
+.navbar-nav .nav-item form {
+    display: inline;
+}
+
+.navbar-nav .nav-item form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+

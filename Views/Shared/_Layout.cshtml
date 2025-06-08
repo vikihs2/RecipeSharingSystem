@@ -32,18 +32,18 @@
     <a class="nav-link fw-semibold" style="color: #a14517;" href="@Url.Action("About", "Home")">About</a>
 </li>
                 </ul>
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    @if (User.Identity?.IsAuthenticated == true)
-                    {
-                        <li class="nav-item">
-                            <a class="nav-link fw-semibold" style="color: #a14517;" asp-controller="Recipes" asp-action="Add">Add Recipe</a>
-                        </li>
-                        <li class="nav-item">
-                            <form method="post" asp-controller="User" asp-action="Logout" class="d-inline">
-                                <button type="submit" class="btn btn-link nav-link fw-semibold" style="color: #a14517; padding: 0;">Logout</button>
-                            </form>
-                        </li>
-                    }
+                <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center">
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <li class="nav-item">
+            <a class="nav-link fw-semibold" style="color: #a14517;" asp-controller="Recipes" asp-action="Add">Add Recipe</a>
+        </li>
+        <li class="nav-item">
+            <form method="post" asp-controller="User" asp-action="Logout" class="d-inline m-0 p-0">
+                <button type="submit" class="nav-link btn btn-link fw-semibold p-0 m-0" style="color: #a14517; background: none; border: none;">Logout</button>
+            </form>
+        </li>
+    }
                     else
                     {
                         <li class="nav-item">
@@ -53,6 +53,12 @@
                             <a class="nav-link fw-semibold" style="color: #a14517;" href="@Url.Action("Register", "User")">Register</a>
                         </li>
                     }
+                    @if (User.IsInRole("Admin"))
+{
+    <li class="nav-item">
+        <a class="nav-link fw-semibold" style="color: #a14517;" href="@Url.Action("AdminPanel", "Admin")">Admin Panel</a>
+    </li>
+}
                 </ul>
             </div>
         </div>
