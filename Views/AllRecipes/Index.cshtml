@@ -1,0 +1,24 @@
+@model IEnumerable<RecipeSharingSystem.Models.Recipe>
+
+@{
+    ViewData["Title"] = "All Recipes";
+}
+
+<h2 class="mb-4 text-center fw-bold" style="color: #14213d;">All Recipes</h2>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+    @foreach (var recipe in Model)
+    {
+        <div class="col">
+            <div class="card h-100 shadow-sm custom-recipe-card">
+                <img src="https://source.unsplash.com/400x200/?food,recipe,@recipe.Title" class="card-img-top" alt="Recipe image">
+                <div class="card-body">
+                    <h5 class="card-title">@recipe.Title</h5>
+                    <p class="card-text text-truncate">@recipe.Description</p>
+                </div>
+                <div class="card-footer text-muted small">
+                    By @recipe.AuthorUsername on @recipe.CreatedOn.ToShortDateString()
+                </div>
+            </div>
+        </div>
+    }
+</div>

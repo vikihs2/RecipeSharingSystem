@@ -19,8 +19,51 @@ html {
 
 body {
   margin-bottom: 60px;
-  background-color: #fff; /* White background */
+  background-color: #fff;
   font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    background: #fffbe6;
+}
+
+.navbar-brand span {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.custom-recipe-card {
+    border-radius: 18px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+.custom-recipe-card:hover {
+    box-shadow: 0 8px 32px rgba(252,163,17,0.15);
+    transform: translateY(-4px) scale(1.02);
+}
+
+.card-img-top {
+    object-fit: cover;
+    height: 200px;
+}
+
+.btn-warning, .btn-warning:focus, .btn-warning:active {
+    background-color: #fca311 !important;
+    border-color: #fca311 !important;
+    color: #fff !important;
+}
+
+.btn-primary, .btn-primary:focus, .btn-primary:active {
+    background-color: #14213d !important;
+    border-color: #14213d !important;
+}
+
+footer {
+  background: #14213d;
+  color: #fff;
+  letter-spacing: 1px;
+  font-size: 1.1em;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -45,11 +88,6 @@ h1, h2, h3 {
   box-shadow: 0 2px 8px rgba(20,33,61,0.08);
 }
 
-footer {
-  background: #14213d;
-  color: #fff;
-}
-
 .welcome-box,
 .main-heading {
   background: #283655;
@@ -64,4 +102,51 @@ footer {
 .main-heading {
   padding: 0.75rem 1rem;
   margin-bottom: 2rem;
+}
+
+.navbar {
+    background-color: #14213d !important;
+}
+.navbar .nav-link, .navbar .navbar-brand {
+    color: #fff !important;
+}
+.navbar .nav-link.active, .navbar .nav-link:hover {
+    color: #fca311 !important;
+}
+.navbar .btn-outline-warning {
+    color: #fca311 !important;
+    border-color: #fca311 !important;
+}
+.navbar .btn-outline-warning:hover, .navbar .btn-outline-warning:focus {
+    background-color: #fca311 !important;
+    color: #fff !important;
+}
+
+.navbar {
+    font-size: 1.15rem;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    background: #fff6e0 !important;
+    border-bottom: 1px solid #fca311;
+}
+.navbar .navbar-brand {
+    color: #fca311 !important;
+}
+.navbar .nav-link {
+    color: #a14517 !important;
+    margin-right: 0.7em;
+    transition: color 0.2s;
+}
+.navbar .nav-link:hover, .navbar .nav-link.active {
+    color: #fca311 !important;
+}
+.navbar .btn-outline-warning {
+    border-color: #fca311 !important;
+    color: #fca311 !important;
+    border-width: 2px;
+    background: transparent;
+    transition: background 0.2s, color 0.2s;
+}
+.navbar .btn-outline-warning:hover, .navbar .btn-outline-warning:focus {
+    background: #fca311 !important;
+    color: #fff !important;
 }

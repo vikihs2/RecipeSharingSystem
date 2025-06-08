@@ -4,37 +4,51 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="p-5 mb-4 bg-dark text-white rounded-3">
-    <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Welcome to Recipe Sharing System</h1>
-        <p class="col-md-8 fs-4">Discover and share your favorite recipes with others.</p>
+<div class="py-5" style="background: linear-gradient(180deg, #fffbe6 0%, #fff6e0 100%);">
+    <div class="container text-center">
+        <h1 class="display-3 fw-bold mb-3" style="color: #7a3b13;">
+            Discover Amazing <span style="color: #fca311;">Recipes</span>
+        </h1>
+        <p class="lead mb-4" style="color: #a14517;">
+            Share your culinary creations and discover delicious recipes from food lovers around the world. Join our community of passionate cooks today!
+        </p>
+        <form class="d-flex justify-content-center mb-4" method="get" action="@Url.Action("Index", "Home")">
+            <input class="form-control w-50 me-2" type="search" name="search" placeholder="🔍 Search recipes..." aria-label="Search" style="max-width: 400px; border-radius: 12px;">
+            <button class="btn btn-warning px-4" type="submit" style="border-radius: 12px; background: linear-gradient(90deg, #fca311 60%, #ffb347 100%); border: none;">Search</button>
+        </form>
     </div>
 </div>
 
-<section>
-    <h2 class="mb-4">Latest Recipes</h2>
-
-    @if (!Model.Any())
-    {
-        <p class="text-muted">No recipes have been added yet.</p>
-    }
-    else
-    {
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            @foreach (var recipe in Model)
-            {
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">@recipe.Title</h5>
-                            <p class="card-text">@recipe.Description</p>
-                        </div>
-                        <div class="card-footer text-muted">
-                            Posted by @recipe.AuthorUsername on @recipe.CreatedOn.ToShortDateString()
-                        </div>
+<section class="container my-5">
+    <h2 class="mb-3 text-center fw-bold" style="color: #7a3b13;">Featured Recipes</h2>
+    <p class="text-center mb-5" style="color: #a14517;">Discover our handpicked selection of amazing recipes that will inspire your next culinary adventure.</p>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        @foreach (var recipe in Model.Take(4))
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm custom-recipe-card" style="border-radius: 18px; border: 1px solid #ffe5b4;">
+                    <img src="https://source.unsplash.com/400x200/?food,recipe,@recipe.Title" class="card-img-top" alt="Recipe image" style="border-radius: 18px 18px 0 0;">
+                    <div class="card-body">
+                        <span class="badge rounded-pill" style="background: #ffe5b4; color: #a14517; font-size: 0.9em;">Featured</span>
+                        <h5 class="card-title mt-2" style="color: #7a3b13;">@recipe.Title</h5>
+                        <p class="card-text text-truncate" style="color: #a14517;">@recipe.Description</p>
+                    </div>
+                    <div class="card-footer text-muted small" style="background: #fffbe6;">
+                        By @recipe.AuthorUsername on @recipe.CreatedOn.ToShortDateString()
                     </div>
                 </div>
-            }
-        </div>
-    }
+            </div>
+        }
+    </div>
+    <div class="text-center mt-4">
+        <a href="@Url.Action("Index", "AllRecipes")" class="btn btn-warning px-5 py-2 fw-semibold" style="border-radius: 8px; background: linear-gradient(90deg, #fca311 60%, #ffb347 100%); border: none;">View All Recipes</a>
+    </div>
+</section>
+
+<section class="py-5" style="background: linear-gradient(90deg, #fffbe6 0%, #fff6e0 100%);">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3" style="color: #a14517;">Join Our Community</h2>
+        <p class="lead mb-4" style="color: #7a3b13;">Sign up to share your favorite recipes, comment on others, and become part of our growing food-loving family!</p>
+        <a href="@Url.Action("Register", "User")" class="btn btn-primary btn-lg px-5" style="background: #a14517; border: none; border-radius: 8px;">Get Started</a>
+    </div>
 </section>
