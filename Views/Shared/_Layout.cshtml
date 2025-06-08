@@ -29,8 +29,8 @@
                         <a class="nav-link fw-semibold" style="color: #a14517;" href="#">Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold" style="color: #a14517;" href="#">About</a>
-                    </li>
+    <a class="nav-link fw-semibold" style="color: #a14517;" href="@Url.Action("About", "Home")">About</a>
+</li>
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     @if (User.Identity?.IsAuthenticated == true)
@@ -79,14 +79,12 @@
                     <li><a href="@Url.Action("Index", "Home")" class="footer-link">Home</a></li>
                     <li><a href="@Url.Action("Index", "AllRecipes")" class="footer-link">All Recipes</a></li>
                     <li><a href="@Url.Action("Index", "Categories")" class="footer-link">Categories</a></li> <!--add Categories page-->
-                    <li><a href="@Url.Action("About", "Home")" class="footer-link">About Us</a></li> <!--connect to about-->
                 </ul>
             </div>
             <div class="col-md-4 mb-3">
                 <h5 class="fw-bold">Legal</h5>
                 <ul class="list-unstyled">
                     <li><a href="@Url.Action("Privacy", "Home")" class="footer-link">Privacy Policy</a></li>
-                    <li><a href="#" class="footer-link">Terms of Service</a></li>
                     <li><a href="#" class="footer-link">Contact</a></li>
                 </ul>
             </div>
