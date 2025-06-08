@@ -33,8 +33,9 @@ namespace RecipeSharingSystem.Web.Controllers
             return View();
         }
         public IActionResult About()
-{
-    return View();
-}
+        {
+            return View();
+        }
     }
+    
 }
