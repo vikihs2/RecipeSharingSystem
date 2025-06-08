@@ -12,7 +12,7 @@ using RecipeSharingSystem.Data;
 namespace RecipeSharingSystem.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250608160528_InitialCreate")]
+    [Migration("20250608182841_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -266,6 +266,15 @@ namespace RecipeSharingSystem.Web.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Servings")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TimeToMake")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()

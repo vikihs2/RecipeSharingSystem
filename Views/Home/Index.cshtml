@@ -25,16 +25,21 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
         @foreach (var recipe in Model.Take(4))
         {
+            var displayName = recipe.AuthorUsername?.Contains("@") == true ? recipe.AuthorUsername.Split('@')[0] : recipe.AuthorUsername;
             <div class="col">
-                <div class="card h-100 shadow-sm custom-recipe-card" style="border-radius: 18px; border: 1px solid #ffe5b4;">
-                    <img src="https://source.unsplash.com/400x200/?food,recipe,@recipe.Title" class="card-img-top" alt="Recipe image" style="border-radius: 18px 18px 0 0;">
+                <div class="card h-100 shadow-sm custom-recipe-card">
+                    <img src="@(string.IsNullOrEmpty(recipe.PhotoUrl) ? "https://source.unsplash.com/400x200/?food,recipe," + recipe.Title : recipe.PhotoUrl)" class="card-img-top" alt="Recipe image">
                     <div class="card-body">
-                        <span class="badge rounded-pill" style="background: #ffe5b4; color: #a14517; font-size: 0.9em;">Featured</span>
-                        <h5 class="card-title mt-2" style="color: #7a3b13;">@recipe.Title</h5>
-                        <p class="card-text text-truncate" style="color: #a14517;">@recipe.Description</p>
+                        <span class="badge rounded-pill" style="background: #ffe5c2; color: #a14517; font-weight: bold;">Desserts</span>
+                        <h5 class="card-title fw-bold" style="color: #a14517;">@recipe.Title</h5>
+                        <p class="card-text text-truncate">@recipe.Description</p>
+                        <div class="d-flex gap-3 mt-3 mb-2" style="color: #a14517;">
+                            <span>⏱ @recipe.TimeToMake minutes</span>
+                            <span>👤 @recipe.Servings servings</span>
+                        </div>
                     </div>
-                    <div class="card-footer text-muted small" style="background: #fffbe6;">
-                        By @recipe.AuthorUsername on @recipe.CreatedOn.ToShortDateString()
+                    <div class="card-footer text-muted small" style="background: #fff8e6;">
+                        By @displayName • @recipe.CreatedOn.ToShortDateString()
                     </div>
                 </div>
             </div>

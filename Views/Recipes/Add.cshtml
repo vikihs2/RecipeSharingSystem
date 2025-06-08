@@ -2,34 +2,35 @@
 
 <h2>Add a Recipe</h2>
 
-<form asp-action="Add" method="post">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        <label>Title</label>
-        <input asp-for="Title" class="form-control" />
-        <span asp-validation-for="Title" class="text-danger"></span>
+<form asp-action="Add" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" name="Title" class="form-control" required />
     </div>
-    <div class="form-group">
-        <label>Description</label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea name="Description" class="form-control" required></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="mb-3">
+        <label class="form-label">Time to make ⏱ (minutes)</label>
+        <input type="number" name="TimeToMake" class="form-control" required min="1" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Servings 👤</label>
+        <input type="number" name="Servings" class="form-control" required min="1" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Photo URL</label>
+        <input type="url" name="PhotoUrl" class="form-control" />
+    </div>
+    <button type="submit" class="btn fw-semibold" style="background-color: #fca311; border: none; color: #fff;">Submit</button>
 </form>
 
 <hr />
 
 <h2>My Recipes</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Created By</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
 @{
     var userName = User.Identity?.Name;
     var recipes = ViewBag.Recipes as List<RecipeSharingSystem.Models.Recipe>;
@@ -37,19 +38,31 @@
     {
         foreach (var recipe in recipes.Where(r => r.AuthorUsername == userName))
         {
-            <tr>
-                <td>@recipe.Title</td>
-                <td>@recipe.Description</td>
-                <td>@recipe.AuthorUsername</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@recipe.Id" class="btn btn-sm btn-primary">Edit</a>
-                    <form asp-action="Delete" asp-route-id="@recipe.Id" method="post" style="display:inline;">
-                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this recipe?');">Delete</button>
-                    </form>
-                </td>
-            </tr>
+            var displayName = recipe.AuthorUsername?.Contains("@") == true ? recipe.AuthorUsername.Split('@')[0] : recipe.AuthorUsername;
+            <div class="col">
+                <div class="card h-100 shadow-sm custom-recipe-card">
+                    <img src="@(string.IsNullOrEmpty(recipe.PhotoUrl) ? "https://source.unsplash.com/400x200/?food,recipe," + recipe.Title : recipe.PhotoUrl)" class="card-img-top" alt="Recipe image">
+                    <div class="card-body">
+                        <span class="badge rounded-pill" style="background: #ffe5c2; color: #a14517; font-weight: bold;">Desserts</span>
+                        <h5 class="card-title fw-bold" style="color: #a14517;">@recipe.Title</h5>
+                        <p class="card-text text-truncate">@recipe.Description</p>
+                        <div class="d-flex gap-3 mt-3 mb-2" style="color: #a14517;">
+                            <span>⏱ @recipe.TimeToMake minutes</span>
+                            <span>👤 @recipe.Servings servings</span>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted small" style="background: #fff8e6;">
+                        By @displayName • @recipe.CreatedOn.ToShortDateString()
+                        <div class="mt-2">
+                            <a asp-action="Edit" asp-route-id="@recipe.Id" class="btn btn-sm" style="background-color: #fca311; color: #fff;">Edit</a>
+                            <form asp-action="Delete" asp-route-id="@recipe.Id" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-sm" style="background-color: #fca311; color: #fff;" onclick="return confirm('Are you sure you want to delete this recipe?');">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
     }
 }
-    </tbody>
-</table>
+</div>
