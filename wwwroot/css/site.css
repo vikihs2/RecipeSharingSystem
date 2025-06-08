@@ -150,3 +150,41 @@ h1, h2, h3 {
     background: #fca311 !important;
     color: #fff !important;
 }
+
+.btn-gradient {
+    background: linear-gradient(90deg, #fca311 0%, #ff9800 100%);
+    color: #fff !important;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: box-shadow 0.2s, background 0.2s;
+    box-shadow: 0 2px 8px rgba(252,163,17,0.08);
+}
+.btn-gradient:hover, .btn-gradient:focus {
+    background: linear-gradient(90deg, #ff9800 0%, #fca311 100%);
+    color: #fff !important;
+    box-shadow: 0 4px 16px rgba(252,163,17,0.15);
+}
+.logo-square {
+    background: #fca311;
+    color: #fff;
+    border-radius: 12px;
+    padding: 0.3em 0.7em;
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-right: 0.5em;
+    display: inline-block;
+}
+.navbar .btn-register {
+    background: #fff6e0;
+    color: #fca311 !important;
+    border: 2px solid #fca311;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-left: 0.5em;
+    transition: background 0.2s, color 0.2s;
+}
+.navbar .btn-register:hover, .navbar .btn-register:focus {
+    background: #fca311;
+    color: #fff !important;
+}
