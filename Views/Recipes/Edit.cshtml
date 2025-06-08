@@ -5,16 +5,46 @@
 <form asp-action="Edit" method="post">
     @Html.AntiForgeryToken()
     <input type="hidden" asp-for="Id" />
-    <div class="form-group">
-        <label>Title</label>
+
+    <div class="mb-3">
+        <label class="form-label">Title</label>
         <input asp-for="Title" class="form-control" />
         <span asp-validation-for="Title" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label>Description</label>
+    <div class="mb-3">
+        <label class="form-label">Description</label>
         <textarea asp-for="Description" class="form-control"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-<a asp-action="Add" class="btn btn-danger">Cancel</a>
+    <div class="mb-3">
+        <label class="form-label">Time to make ⏱ (minutes)</label>
+        <input asp-for="TimeToMake" type="number" class="form-control" min="1" />
+        <span asp-validation-for="TimeToMake" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Servings 👤</label>
+        <input asp-for="Servings" type="number" class="form-control" min="1" />
+        <span asp-validation-for="Servings" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Photo URL</label>
+        <input asp-for="PhotoUrl" type="url" class="form-control" />
+        <span asp-validation-for="PhotoUrl" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Category</label>
+        <select asp-for="Category" class="form-select" required>
+            <option value="">-- Select Category --</option>
+            <option value="Desserts">🍰 Desserts</option>
+            <option value="Main Dishes">🍝 Main Dishes</option>
+            <option value="Salads">🥗 Salads</option>
+            <option value="Appetizers">🍞 Appetizers</option>
+            <option value="Soups & Stews">🍲 Soups & Stews</option>
+            <option value="Breakfast">🥐 Breakfast</option>
+            <option value="Vegetarian / Vegan">🌱 Vegetarian / Vegan</option>
+        </select>
+        <span asp-validation-for="Category" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn fw-semibold" style="background-color: #fca311; border: none; color: #fff;">Save</button>
+    <a asp-action="Add" class="btn btn-danger">Cancel</a>
 </form>
