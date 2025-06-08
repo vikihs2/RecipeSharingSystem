@@ -1,5 +1,22 @@
 @model IEnumerable<RecipeSharingSystem.Models.Recipe>
 
+@functions {
+    public string GetCategoryIcon(string category)
+    {
+        return category switch
+        {
+            "Desserts" => "🍰",
+            "Main Dishes" => "🍝",
+            "Salads" => "🥗",
+            "Appetizers" => "🍞",
+            "Soups & Stews" => "🍲",
+            "Breakfast" => "🥐",
+            "Vegetarian / Vegan" => "🌱",
+            _ => ""
+        };
+    }
+}
+
 @{
     ViewData["Title"] = "All Recipes";
 }
@@ -13,7 +30,9 @@
             <div class="card h-100 shadow-sm custom-recipe-card">
                 <img src="@(string.IsNullOrEmpty(recipe.PhotoUrl) ? "https://source.unsplash.com/400x200/?food,recipe," + recipe.Title : recipe.PhotoUrl)" class="card-img-top" alt="Recipe image">
                 <div class="card-body">
-                    <span class="badge rounded-pill" style="background: #ffe5c2; color: #a14517; font-weight: bold;">Desserts</span>
+                    <span class="badge rounded-pill" style="background: #ffe5c2; color: #a14517; font-weight: bold;">
+                        @GetCategoryIcon(recipe.Category) @recipe.Category
+                    </span>
                     <h5 class="card-title fw-bold" style="color: #a14517;">@recipe.Title</h5>
                     <p class="card-text text-truncate">@recipe.Description</p>
                     <div class="d-flex gap-3 mt-3 mb-2" style="color: #a14517;">

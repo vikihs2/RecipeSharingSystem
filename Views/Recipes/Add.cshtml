@@ -1,5 +1,22 @@
 @model RecipeSharingSystem.Models.Recipe
 
+@functions {
+    public string GetCategoryIcon(string category)
+    {
+        return category switch
+        {
+            "Desserts" => "🍰",
+            "Main Dishes" => "🍝",
+            "Salads" => "🥗",
+            "Appetizers" => "🍞",
+            "Soups & Stews" => "🍲",
+            "Breakfast" => "🥐",
+            "Vegetarian / Vegan" => "🌱",
+            _ => ""
+        };
+    }
+}
+
 <h2>Add a Recipe</h2>
 
 <form asp-action="Add" method="post" enctype="multipart/form-data">
@@ -24,6 +41,19 @@
         <label class="form-label">Photo URL</label>
         <input type="url" name="PhotoUrl" class="form-control" />
     </div>
+    <div class="mb-3">
+        <label class="form-label">Category</label>
+        <select name="Category" class="form-select" required>
+            <option value="">-- Select Category --</option>
+            <option value="Desserts">🍰 Desserts</option>
+            <option value="Main Dishes">🍝 Main Dishes</option>
+            <option value="Salads">🥗 Salads</option>
+            <option value="Appetizers">🍞 Appetizers</option>
+            <option value="Soups & Stews">🍲 Soups & Stews</option>
+            <option value="Breakfast">🥐 Breakfast</option>
+            <option value="Vegetarian / Vegan">🌱 Vegetarian / Vegan</option>
+        </select>
+    </div>
     <button type="submit" class="btn fw-semibold" style="background-color: #fca311; border: none; color: #fff;">Submit</button>
 </form>
 
@@ -43,7 +73,9 @@
                 <div class="card h-100 shadow-sm custom-recipe-card">
                     <img src="@(string.IsNullOrEmpty(recipe.PhotoUrl) ? "https://source.unsplash.com/400x200/?food,recipe," + recipe.Title : recipe.PhotoUrl)" class="card-img-top" alt="Recipe image">
                     <div class="card-body">
-                        <span class="badge rounded-pill" style="background: #ffe5c2; color: #a14517; font-weight: bold;">Desserts</span>
+                        <span class="badge rounded-pill" style="background: #ffe5c2; color: #a14517; font-weight: bold;">
+                            @GetCategoryIcon(recipe.Category) @recipe.Category
+                        </span>
                         <h5 class="card-title fw-bold" style="color: #a14517;">@recipe.Title</h5>
                         <p class="card-text text-truncate">@recipe.Description</p>
                         <div class="d-flex gap-3 mt-3 mb-2" style="color: #a14517;">
