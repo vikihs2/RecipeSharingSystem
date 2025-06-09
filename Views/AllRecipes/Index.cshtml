@@ -28,13 +28,27 @@
         var displayName = recipe.AuthorUsername?.Contains("@") == true ? recipe.AuthorUsername.Split('@')[0] : recipe.AuthorUsername;
         <div class="col">
             <div class="card h-100 shadow-sm custom-recipe-card">
-                <img src="@(string.IsNullOrEmpty(recipe.PhotoUrl) ? "https://source.unsplash.com/400x200/?food,recipe," + recipe.Title : recipe.PhotoUrl)" class="card-img-top" alt="Recipe image">
+                <img src="@(string.IsNullOrEmpty(recipe.PhotoUrl) ? "https://source.unsplash.com/400x200/?food,recipe," + recipe.Title : recipe.PhotoUrl)" class="card-img-top" alt="Recipe image" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x200?text=No+Image';">
                 <div class="card-body">
                     <span class="badge rounded-pill" style="background: #ffe5c2; color: #a14517; font-weight: bold;">
                         @GetCategoryIcon(recipe.Category) @recipe.Category
                     </span>
                     <h5 class="card-title fw-bold" style="color: #a14517;">@recipe.Title</h5>
-                    <p class="card-text text-truncate">@recipe.Description</p>
+                    @{
+                        var isLong = !string.IsNullOrEmpty(recipe.Description) && recipe.Description.Length > 100;
+                        var shortDesc = isLong ? recipe.Description.Substring(0, 100) + "..." : recipe.Description;
+                    }
+                    <p class="card-text" id="desc-short-@recipe.Id" style="display:block;@(isLong ? "" : "white-space:normal;")">
+                        @shortDesc
+                        @if (isLong)
+                        {
+                            <button type="button" class="btn-sighnIn btn-sm ms-2" onclick="showFullDesc(@recipe.Id)">Show All</button>
+                        }
+                    </p>
+                    <p class="card-text" id="desc-full-@recipe.Id" style="display:none;">
+                        @recipe.Description
+                        <button type="button" class="btn-sighnIn btn-sm ms-2" onclick="hideFullDesc(@recipe.Id)">Show Less</button>
+                    </p>
                     <div class="d-flex gap-3 mt-3 mb-2" style="color: #a14517;">
                         <span>⏱ @recipe.TimeToMake minutes</span>
                         <span>👤 @recipe.Servings servings</span>
@@ -47,3 +61,14 @@
         </div>
     }
 </div>
+
+<script>
+function showFullDesc(id) {
+    document.getElementById('desc-short-' + id).style.display = 'none';
+    document.getElementById('desc-full-' + id).style.display = 'block';
+}
+function hideFullDesc(id) {
+    document.getElementById('desc-short-' + id).style.display = 'block';
+    document.getElementById('desc-full-' + id).style.display = 'none';
+}
+</script>
