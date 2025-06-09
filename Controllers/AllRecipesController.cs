@@ -14,9 +14,11 @@ namespace RecipeSharingSystem.Controllers
         }
 
         public IActionResult Index()
-        {
-            var recipes = _context.Recipes.ToList();
-            return View(recipes);
-        }
+{
+    var recipes = _context.Recipes
+        .Where(r => r.IsApproved)
+        .ToList();
+    return View(recipes);
+}
     }
 }

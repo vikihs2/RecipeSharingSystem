@@ -20,7 +20,11 @@ namespace RecipeSharingSystem.Models
         public int Servings { get; set; }
 
         public string? PhotoUrl { get; set; }
-        
+
         public string Category { get; set; }
+        
+        public bool IsApproved { get; set; } = false;
+
+        public bool IsFeatured { get; set; } = false;
     }
 }

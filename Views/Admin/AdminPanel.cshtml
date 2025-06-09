@@ -1,51 +1,148 @@
+@model RecipeSharingSystem.Models.AdminPanelViewModel
+
 @{
     ViewData["Title"] = "Admin Panel";
 }
 
-<h2>Admin Panel</h2>
+<h2 class="mb-4 fw-bold text-center">Admin Panel</h2>
 
-<div class="mb-4">
-    <h4>🗂️ Manage Recipes</h4>
-    <ul>
-        <li>Approve or Reject recipes submitted by users before they go live.</li>
-        <li>Edit/Delete any recipe, including user-submitted ones.</li>
-        <li>Feature recipes to promote them on the homepage.</li>
+<div class="mb-5">
+    <h4 class="fw-bold mb-3">🗂️ Manage Recipes</h4>
+    <div class="mb-3">
+        <h5 class="fw-semibold">Pending Approval</h5>
+        @if (Model.PendingRecipes != null && Model.PendingRecipes.Any())
+        {
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                @foreach (var recipe in Model.PendingRecipes)
+                {
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <img src="@(string.IsNullOrEmpty(recipe.PhotoUrl) ? "https://source.unsplash.com/400x200/?food,recipe," + recipe.Title : recipe.PhotoUrl)" class="card-img-top" alt="Recipe image">
+                            <div class="card-body">
+                                <h5 class="card-title">@recipe.Title</h5>
+                                <p class="card-text">@recipe.Description</p>
+                                <div class="d-flex gap-2">
+                                    <form asp-action="Approve" asp-route-id="@recipe.Id" method="post">
+                                        <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                                    </form>
+                                    <form asp-action="Delete" asp-route-id="@recipe.Id" method="post">
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this recipe?');">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">No recipes pending approval.</div>
+        }
+    </div>
+</div>
+
+<div class="mb-5">
+    <h4 class="fw-bold mb-3">✏️ Edit or Delete Recipes</h4>
+    @if (Model.AllRecipes != null && Model.AllRecipes.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var recipe in Model.AllRecipes)
+                {
+                    <tr>
+                        <td>@recipe.Title</td>
+                        <td>@recipe.AuthorUsername</td>
+                        <td>@recipe.Category</td>
+                        <td>@recipe.CreatedOn.ToShortDateString()</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@recipe.Id" class="btn btn-warning btn-sm">Edit</a>
+                            <form asp-action="Delete" asp-route-id="@recipe.Id" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this recipe?');">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">No recipes found.</div>
+    }
+</div>
+
+<div class="mb-5">
+    <h4 class="fw-bold mb-3">⭐ Choose Home Page Featured Recipes</h4>
+    <form asp-action="SetFeatured" method="post">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            @if (Model.AllRecipes != null)
+            {
+                foreach (var recipe in Model.AllRecipes)
+                {
+                    var isFeatured = Model.FeaturedRecipeIds != null && Model.FeaturedRecipeIds.Contains(recipe.Id);
+                    <div class="col">
+                        <div class="card h-100 shadow-sm @(isFeatured ? "border-warning" : "")">
+                            <img src="@(string.IsNullOrEmpty(recipe.PhotoUrl) ? "https://source.unsplash.com/400x200/?food,recipe," + recipe.Title : recipe.PhotoUrl)" class="card-img-top" alt="Recipe image">
+                            <div class="card-body">
+                                <h5 class="card-title">@recipe.Title</h5>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="featuredIds" value="@recipe.Id" id="featured-@recipe.Id" @(isFeatured ? "checked" : "") @(Model.FeaturedRecipeIds != null && Model.FeaturedRecipeIds.Count >= 4 && !isFeatured ? "disabled" : "")>
+                                    <label class="form-check-label" for="featured-@recipe.Id">
+                                        Feature on Home
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary fw-semibold">Save Featured Recipes (max 4)</button>
+        </div>
+    </form>
+</div>
+
+<div>
+    <h4 class="fw-bold mb-3">📊 Site Statistics</h4>
+    <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Total users
+            <span class="badge bg-primary rounded-pill">@Model.TotalUsers</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Total recipes
+            <span class="badge bg-success rounded-pill">@Model.TotalRecipes</span>
+        </li>
+        </li>
     </ul>
 </div>
-<div class="mb-4">
-    <h4>👥 Manage Users</h4>
-    <ul>
-        <li>View a list of all registered users.</li>
-        <li>Block or delete users if necessary (e.g., abusive content).</li>
-        <li>Upgrade users to moderators (optional).</li>
-    </ul>
-</div>
-<div class="mb-4">
-    <h4>🏷️ Manage Categories & Tags</h4>
-    <ul>
-        <li>Create, edit, or delete recipe categories (e.g., Breakfast, Vegan, Desserts).</li>
-        <li>Manage tags (like “Quick”, “Spicy”, “Gluten-Free”).</li>
-    </ul>
-</div>
-<div class="mb-4">
-    <h4>💬 Moderate Comments</h4>
-    <ul>
-        <li>Delete inappropriate comments.</li>
-    </ul>
-</div>
-<div class="mb-4">
-    <h4>📊 Site Statistics</h4>
-    <ul>
-        <li>Total users</li>
-        <li>Total recipes</li>
-        <li>Most liked/viewed recipes</li>
-        <li>Top contributors</li>
-    </ul>
-</div>
-<div class="mb-4">
-    <h4>⚙️ System Settings</h4>
-    <ul>
-        <li>Change site-wide settings like welcome message, homepage banner text/image.</li>
-        <li>Enable/disable recipe submissions.</li>
-    </ul>
-</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkboxes = document.querySelectorAll('input[name="featuredIds"]');
+            function updateCheckboxes() {
+                const checked = Array.from(checkboxes).filter(cb => cb.checked);
+                checkboxes.forEach(cb => {
+                    if (!cb.checked) cb.disabled = checked.length >= 4;
+                    else cb.disabled = false;
+                });
+            }
+            checkboxes.forEach(cb => cb.addEventListener('change', updateCheckboxes));
+            updateCheckboxes();
+        });
+    </script>
+}

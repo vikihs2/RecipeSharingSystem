@@ -16,31 +16,33 @@ namespace RecipeSharingSystem.Controllers
         }
 
         public IActionResult Index(string category)
-        {
-            var validCategories = new[]
-            {
-                "Desserts",
-                "Main Dishes",
-                "Salads",
-                "Appetizers",
-                "Soups & Stews",
-                "Breakfast",
-                "Vegetarian / Vegan"
-            };
+{
+    var validCategories = new[]
+    {
+        "Desserts",
+        "Main Dishes",
+        "Salads",
+        "Appetizers",
+        "Soups & Stews",
+        "Breakfast",
+        "Vegetarian / Vegan"
+    };
 
-            var selectedCategory = validCategories
-                .FirstOrDefault(c => c.Equals(category, StringComparison.OrdinalIgnoreCase))
-                ?? "Desserts";
+    var selectedCategory = validCategories
+        .FirstOrDefault(c => c.Equals(category, StringComparison.OrdinalIgnoreCase))
+        ?? validCategories[0];
 
-            var recipes = _context.Recipes.ToList();
+    var recipes = _context.Recipes
+        .Where(r => r.IsApproved && r.Category == selectedCategory)
+        .ToList();
 
-            var model = new CategoriesViewModel
-            {
-                Recipes = recipes,
-                SelectedCategory = selectedCategory
-            };
+    var model = new CategoriesViewModel
+    {
+        Recipes = recipes,
+        SelectedCategory = selectedCategory
+    };
 
-            return View(model);
-        }
+    return View(model);
+}
     }
 }
