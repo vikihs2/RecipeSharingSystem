@@ -199,3 +199,35 @@ h1, h2, h3 {
     padding: 0;
 }
 
+.btn-sighnIn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #f76b1c, #fca311);
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.btn-sighnIn:hover {
+    background: linear-gradient(90deg, #fca311, #f76b1c);
+}
+
+.btn-fade {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #ff4e50, #f9238e);
+    border: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-fade:hover {
+    background: linear-gradient(90deg, #f9238e, #ff4e50);
+    transform: scale(1.05);
+}

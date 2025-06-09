@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using RecipeSharingSystem.Data;
+using RecipeSharingSystem.Models;
 using System.Linq;
+using RecipeSharingSystem.Data;
 
-namespace RecipeSharingSystem.Web.Controllers
+namespace RecipeSharingSystem.Controllers
 {
     public class HomeController : Controller
     {
@@ -13,29 +14,39 @@ namespace RecipeSharingSystem.Web.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string category, string errorMessage = null)
         {
-            var recipes = _context.Recipes
-                .OrderByDescending(r => r.CreatedOn)
-                .ToList();
+            var validCategories = new[]
+            {
+                "Desserts",
+                "Main Dishes",
+                "Salads",
+                "Appetizers",
+                "Soups & Stews",
+                "Breakfast",
+                "Vegetarian / Vegan"
+            };
 
+            if (!string.IsNullOrEmpty(category))
+            {
+                var matchedCategory = validCategories
+                    .FirstOrDefault(c => c.Equals(category, System.StringComparison.OrdinalIgnoreCase));
+                if (matchedCategory != null)
+                {
+                    return RedirectToAction("Index", "Categories", new { category = matchedCategory });
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Category not found.";
+                }
+            }
+
+            var recipes = _context.Recipes.ToList();
             return View(recipes);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View();
         }
         public IActionResult About()
         {
             return View();
         }
     }
-    
 }

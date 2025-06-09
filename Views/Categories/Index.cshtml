@@ -1,0 +1,85 @@
+@model RecipeSharingSystem.Models.CategoriesViewModel
+
+@functions {
+    public string GetCategoryIcon(string category)
+    {
+        return category switch
+        {
+            "Desserts" => "🍰",
+            "Main Dishes" => "🍝",
+            "Salads" => "🥗",
+            "Appetizers" => "🍞",
+            "Soups & Stews" => "🍲",
+            "Breakfast" => "🥐",
+            "Vegetarian / Vegan" => "🌱",
+            _ => ""
+        };
+    }
+}
+
+@{
+    ViewData["Title"] = "Categories";
+    var categories = new List<(string Name, string Emoji)>
+    {
+        ("Desserts", "🍰"),
+        ("Main Dishes", "🍝"),
+        ("Salads", "🥗"),
+        ("Appetizers", "🍞"),
+        ("Soups & Stews", "🍲"),
+        ("Breakfast", "🥐"),
+        ("Vegetarian / Vegan", "🌱")
+    };
+    var selectedCategory = Model.SelectedCategory ?? categories[0].Name;
+}
+
+<div class="container">
+    <h2 class="mb-4 fw-bold text-center">Recipe Categories</h2>
+    <div class="d-flex justify-content-center mb-4 flex-wrap gap-2">
+        @foreach (var cat in categories)
+        {
+            <form method="get" asp-action="Index" asp-controller="Categories" class="d-inline">
+                <input type="hidden" name="category" value="@cat.Name" />
+                <button type="submit" class="btn btn-lg fw-semibold"
+                        style="background:@(selectedCategory == cat.Name ? "#fca311" : "#fff6e0");color:@(selectedCategory == cat.Name ? "#fff" : "#a14517");border:2px solid #fca311;border-radius:20px;min-width:150px;">
+                    <span style="font-size:1.5em;">@cat.Emoji</span> @cat.Name
+                </button>
+            </form>
+        }
+    </div>
+
+    <div>
+        <h4 class="mb-3 text-center">@categories.First(c => c.Name == selectedCategory).Emoji @selectedCategory Recipes</h4>
+        @if (Model.Recipes != null && Model.Recipes.Any(r => r.Category == selectedCategory))
+        {
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                @foreach (var recipe in Model.Recipes.Where(r => r.Category == selectedCategory))
+                {
+                    var displayName = recipe.AuthorUsername?.Contains("@") == true ? recipe.AuthorUsername.Split('@')[0] : recipe.AuthorUsername;
+                    <div class="col">
+                        <div class="card h-100 shadow-sm custom-recipe-card">
+                            <img src="@(string.IsNullOrEmpty(recipe.PhotoUrl) ? "https://source.unsplash.com/400x200/?food,recipe," + recipe.Title : recipe.PhotoUrl)" class="card-img-top" alt="Recipe image">
+                            <div class="card-body">
+                                <span class="badge rounded-pill" style="background: #ffe5c2; color: #a14517; font-weight: bold;">
+                                    @GetCategoryIcon(recipe.Category) @recipe.Category
+                                </span>
+                                <h5 class="card-title fw-bold" style="color: #a14517;">@recipe.Title</h5>
+                                <p class="card-text text-truncate">@recipe.Description</p>
+                                <div class="d-flex gap-3 mt-3 mb-2" style="color: #a14517;">
+                                    <span>⏱ @recipe.TimeToMake minutes</span>
+                                    <span>👤 @recipe.Servings servings</span>
+                                </div>
+                            </div>
+                            <div class="card-footer text-muted small" style="background: #fff8e6;">
+                                By @displayName • @recipe.CreatedOn.ToShortDateString()
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-warning text-center">No recipes found for this category.</div>
+        }
+    </div>
+</div>
